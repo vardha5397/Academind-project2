@@ -1,0 +1,17 @@
+name: Pathsignore
+
+on: 
+    push:
+        branches:
+            - main
+            - 'feature/**'
+        paths-ignore:
+            - './github/workflows/*'
+jobs:
+     pathsignore:
+        runs-on: ubuntu-latset
+        steps:
+            - name: get code
+              uses: action/checkout@v3
+            - name: run script
+              run: echo " ${{ toJSON(github.event)}}"
