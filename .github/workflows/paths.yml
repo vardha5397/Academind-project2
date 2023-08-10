@@ -12,6 +12,6 @@ jobs:
         runs-on: ubuntu-latset
         steps:
             - name: get code
-              uses: action/checkout@v3
+              uses: actions/checkout@v3
             - name: run script
               run: echo " ${{ toJSON(github.event)}}"
