@@ -1,0 +1,25 @@
+name: pullrequest_Events
+
+on:
+    pull_request:
+        types:
+            - opened
+            - closed
+jobs:
+    pullreqjob:
+        runs-on: ubuntu-latest
+        steps:
+            - name: get the code
+              uses: actions/checkout@v3
+            - name: set the environment
+              uses: actions/setup-node@v3
+              with:
+                    node-version: 17
+            - name: Intsalling Dependencies
+              run: npm ci
+            - name: Linting
+              run: npm run lint
+            - name: Testing the code
+              run: npm run test
+            - name: building the code
+              run: npm run build
