@@ -1,0 +1,36 @@
+name: Branch-paths
+
+on:
+    pull_request:
+        types:
+            - opened
+            - closed
+        branches:
+            - main
+            - 'dev-*'
+            - 'release-*'
+            - 'feature/**'
+    workflow_dispatch:
+    
+    push:
+        branches:
+            - main
+            - 'dev-*'
+            - 'release-*'
+            - 'feature/**'
+        paths-ignore:
+            - '.github/workflows/*'
+        paths:
+            - '.github/**'
+jobs:
+    my_job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: get code
+              uses: actions/checkout@v3
+            - name: setup the environment
+              uses: actions/setup-node@v3
+              with:
+                     node-version: '17'
+            - name: run the script
+              run: echo " ${{ github.repository }} "
