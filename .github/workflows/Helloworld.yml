@@ -1,0 +1,18 @@
+name: Helloworld workflow
+on: 
+    push:
+      branches:
+          - main
+    workflow_dispatch:
+jobs:
+      job1:    # job is combination of runner and steps
+        runs-on: ubuntu-latest
+        steps:   # steps is combination of run & uses
+          - name: first task
+            run: echo " hello world"
+      job2:
+          needs: [job1]
+          runs-on: ubuntu-latest
+          steps:
+             - name: sec job
+               run: echo " bye" 
