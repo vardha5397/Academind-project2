@@ -5,6 +5,7 @@ on:
         types:
             - opened
             - closed
+    workflow_dispatch:
 jobs:
     pullreqjob:
         runs-on: ubuntu-latest
