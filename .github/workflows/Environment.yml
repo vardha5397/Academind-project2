@@ -1,0 +1,19 @@
+name: Environment 
+
+on:
+    push:
+        branches:
+            - main
+            - dev
+jobs:
+      TestJob:
+          environment: testing
+          runs-on: ubuntu-latest
+          steps:
+            - name: get the code
+              uses: actions/checkout@v3
+            - name: displaying the secret varaibles
+              run: echo " ${{ secrets.USER_NAME }}"
+            - name: command
+              run: echo "${{ secrets.PASSWORD }}"
+              
