@@ -53,7 +53,7 @@ jobs:
               run: npm run build
             - name: using output file
               id: publsih
-              run: find dist/assests/*.js -type f -execdir echo '::set-output name={outputfile}::{}' ';'
+              run: find dist/assets/*.js -type f -execdir echo '::set-output name={outputfile}::{}' ';'
             - name: list the files
               run: ls ${{ github.workspace }}
             - name: uploadartifact
