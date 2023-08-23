@@ -39,3 +39,20 @@ jobs:
               with:
                      name: test-report
                      path: test.json
+    Buildjob:
+        needs: [Testjob] 
+        runs-on: ubuntu-latest
+        steps:
+            - name: get the code
+              uses: actions/checkout@v3
+            - name: Intsall dependencies
+              run: npm ci
+            - name: Building
+              run: npm run build
+            - name: list the files
+              run: ls ${{ github.workspace }}
+            - name: uploadartifact
+              uses: actions/upload-artifact@v3
+              with:
+                    name: distfiles
+                    path: dist
