@@ -5,6 +5,7 @@ on:
         branches:
             - main
             - dev
+    workflow_dispatch:
 jobs:
       TestJob:
           environment: testing
@@ -16,4 +17,3 @@ jobs:
               run: echo " ${{ secrets.USER_NAME }}"
             - name: command
               run: echo "${{ secrets.PASSWORD }}"
-              
