@@ -7,7 +7,7 @@ on:
             - dev
     workflow_dispatch:
 jobs:
-      TestJob:
+    TestJob:
           environment: testing
           runs-on: ubuntu-latest
           steps:
@@ -17,3 +17,13 @@ jobs:
               run: echo " ${{ secrets.USER_NAME }}"
             - name: command
               run: echo "${{ secrets.PASSWORD }}"
+    BuildJob: 
+          environment: build
+          runs-on: ubuntu-latest
+          steps:
+            - name: get the code
+              uses: actions/checkout@v2
+            - name: displaying the secret varaibles
+              run:  echo " ${{ secrets.BUILD_NAME }}"
+            - name: diaplay the secret variable
+              run: echo "${{ secrets.BUILD_PASSWORD}}"
