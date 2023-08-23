@@ -32,9 +32,10 @@ jobs:
               run: npm run lint
             - name: Perform Testing
               run: npm run test
+            - name: list files
+              run: ls ${{ github.workspace }}
             - name: upload the test report
               uses: actions/upload-artifact@v3
               with:
                      name: test-report
                      path: test.json
-                     
