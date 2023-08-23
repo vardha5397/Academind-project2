@@ -41,6 +41,8 @@ jobs:
                      path: test.json
     Buildjob:
         needs: [Testjob] 
+        outputs:
+            outputfile: ${{ steps.output-file.outputs.outputfile}}
         runs-on: ubuntu-latest
         steps:
             - name: get the code
@@ -49,6 +51,9 @@ jobs:
               run: npm ci
             - name: Building
               run: npm run build
+            - name: using output file
+              id: output-file
+              run: find dist/assets/*.js -type f -execdir echo '::set-output name={outputfile}::{}' ';'
             - name: list the files
               run: ls ${{ github.workspace }}
             - name: uploadartifact
@@ -56,3 +61,13 @@ jobs:
               with:
                     name: distfiles
                     path: dist
+    DownloadArtifact:
+           needs: [Buildjob]
+           runs-on: ubuntu-latest
+           steps:
+                 - name: download the artifact
+                   uses: actions/download-artifact@v3
+                   with:
+                       name: distfiles
+                 - name: displaying the output file
+                   run: echo " ${{ needs.Buildjob.outputs.outputfile }}"
