@@ -31,7 +31,7 @@ jobs:
             - name: Perform linting
               run: npm run lint
             - name: Perform Testing
-              run: npm run test
+              run: npm run tests
             - name: list files
               run: ls ${{ github.workspace }}
             - name: upload the test report
