@@ -77,7 +77,7 @@ jobs:
        runs-on: ubuntu-latest
        steps:
          - name: This job will run if any of the jobs fails
-           run: |
-              echo: "There is something wrong "
-              echo: " !!!!!!!!!!!!!!!!!!!!!!!!!"
-               
+           run: echo " something wrong"
+         - name: Warning symbol
+           run: echo " !!!!!!!!!"
+             
