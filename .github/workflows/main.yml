@@ -31,10 +31,10 @@ jobs:
             - name: Perform linting
               run: npm run lint
             - name: Perform Testing
+              id: test-step
               run: npm run tests
-            - name: list files
-              run: ls ${{ github.workspace }}
             - name: upload the test report
+              if:   failure() && steps.test-step.outcome == 'failure'
               uses: actions/upload-artifact@v3
               with:
                      name: test-report
@@ -71,3 +71,12 @@ jobs:
                        name: distfiles
                  - name: displaying the output file
                    run: echo " ${{ needs.Buildjob.outputs.outputfile }}"
+    Report:
+       needs: [Testjob,Buildjob,DownloadArtifact]
+       runs-on: ubuntu-latest
+       steps:
+         - name: This job will run if any of the jobs fails
+           run: |
+              echo: "There is something wrong "
+              echo " !!!!!!!!!!!!!!!!!!!!!!!!!"
+               
