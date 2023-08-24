@@ -79,5 +79,5 @@ jobs:
          - name: This job will run if any of the jobs fails
            run: |
               echo: "There is something wrong "
-              echo " !!!!!!!!!!!!!!!!!!!!!!!!!"
+              echo: " !!!!!!!!!!!!!!!!!!!!!!!!!"
                
