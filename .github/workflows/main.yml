@@ -73,7 +73,7 @@ jobs:
                    run: echo " ${{ needs.Buildjob.outputs.outputfile }}"
     Report:
        needs: [Testjob,Buildjob,DownloadArtifact]
-       if: failed()
+       if: failure()
        runs-on: ubuntu-latest
        steps:
          - name: This job will run if any of the jobs fails
